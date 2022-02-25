@@ -1,4 +1,0 @@
-repository "wiimote plastic@sonicboom_2006@cloud"
-  path "/"
-    br "/main"
-    co "/main"
