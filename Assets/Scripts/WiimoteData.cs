@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using WiimoteApi;
 
+//https://www.reddit.com/r/Unity3D/comments/1syswe/ps4_controller_map_for_unity/
+
 public class WiimoteData : MonoBehaviour
 {
 
@@ -22,6 +24,7 @@ public class WiimoteData : MonoBehaviour
     public int calibrationMode = 1;
 
     public bool pcInput = false;
+    public bool ps4Input = true;
 
     void Start() {
         model = new List<GameObject> {GameObject.Find("modelLeft"), GameObject.Find("modelRight")};
@@ -39,7 +42,6 @@ public class WiimoteData : MonoBehaviour
             else{
                 Debug.Log("Not enough wii remotes connected, set pcInput to true to be able to use keyboard and mouse");
             }
-            
         }
     }
 
@@ -59,6 +61,10 @@ public class WiimoteData : MonoBehaviour
             if(Input.GetKey("up") || Input.GetKey("down")){
                 GloveManager.GetComponent<Punching>().switchGuard(Input.GetKey("up"));
             }
+        }
+
+        if(ps4Input){
+            Player.GetComponent<PlayerMovement>().move(new Vector3(Input.GetAxis("MoveHorizontal"), 0, Input.GetAxis("MoveVertical")).normalized, BoolToInt(Input.GetKey("leanLeft")) - BoolToInt(Input.GetKey("leanRight")));
         }
     }
 
