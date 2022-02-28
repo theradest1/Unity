@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float playerSpeed;
     Rigidbody rb; 
-    CharacterController charControl;
     [SerializeField]
     float lookSpeedHorizontal;
     [SerializeField]
@@ -22,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 leanAmount;
     private PlayerInput inputs;
     private Punching punching;
+    private float playerY;
 
     private void Awake()
     {
@@ -40,8 +40,8 @@ public class PlayerMovement : MonoBehaviour
     {
 
         rb = GetComponent<Rigidbody>();
-        charControl = GetComponent<CharacterController>();
         punching = this.GetComponent<Punching>();
+        playerY = this.transform.position.y;
     }
 
     // Update is called once per frame
@@ -59,7 +59,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void move(Vector2 move){
-        charControl.Move(this.transform.forward * move.y * Time.deltaTime * playerSpeed + this.transform.right * move.x * Time.deltaTime * playerSpeed); // for character controller (better so far)
+        Vector3 add = this.transform.position + this.transform.forward * move.y * Time.deltaTime * playerSpeed + this.transform.right * move.x * Time.deltaTime * playerSpeed;
+        this.transform.position = new Vector3(add.x, playerY, add.z);
         lookPlace.transform.position += this.transform.forward * move.y * Time.deltaTime * playerSpeed + this.transform.right * move.x * Time.deltaTime * playerSpeed;
     }
 
