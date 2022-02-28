@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //looking
-        lookPlace.transform.position = Vector3.Lerp(lookPlace.transform.position, Enemy.transform.position, lookSmoothing);
+        lookPlace.transform.position = Vector3.Lerp(lookPlace.transform.position, Enemy.transform.position, lookSmoothing * Time.deltaTime);
         this.transform.LookAt(lookPlace.transform.position);
 
         cam.transform.LookAt(lookPlace.transform.position);
