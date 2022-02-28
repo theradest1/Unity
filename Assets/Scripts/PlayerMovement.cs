@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -39,14 +40,21 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    public void move(Vector3 moveVector, float lean){
-        //rb.AddRelativeForce(vector3 * playerSpeed); //for rigidbody controller
-        charControl.Move(this.transform.forward * moveVector.z * Time.deltaTime * playerSpeed + this.transform.right * moveVector.x * Time.deltaTime * playerSpeed); // for character controller (better so far)
-        lookPlace.transform.position += this.transform.forward * moveVector.z * Time.deltaTime * playerSpeed + this.transform.right * moveVector.x * Time.deltaTime * playerSpeed;
+    public void Jump(InputAction.CallbackContext context){
+        Debug.Log("jumped" + context.phase);
+    }
+
+    public void move(InputAction.CallbackContext context){
+        if(context.performed){
+            Debug.Log(context);
+            charControl.Move(this.transform.forward * context.ReadValue<Vector2>().y * Time.deltaTime * playerSpeed + this.transform.right * context.ReadValue<Vector2>().x * Time.deltaTime * playerSpeed); // for character controller (better so far)
+            //lookPlace.transform.position += this.transform.forward * moveVector.z * Time.deltaTime * playerSpeed + this.transform.right * moveVector.x * Time.deltaTime * playerSpeed;
 
         
-        leanAmount = Mathf.Lerp(leanAmount, leanTarget * -lean, leanSpeed);
-        this.transform.Rotate(new Vector3(0, 0, leanAmount));
+            //leanAmount = Mathf.Lerp(leanAmount, leanTarget * -lean, leanSpeed);
+            //this.transform.Rotate(new Vector3(0, 0, leanAmount));
+        }
+        
     }
 
     float Distance3D(Vector3 loc){
