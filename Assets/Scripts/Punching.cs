@@ -12,6 +12,7 @@ public class Punching : MonoBehaviour
     private List<Rigidbody> RBs;
     public float punchingSpeed;
     public float returnSpeed;
+    public GameObject Enemy;
 
     public float maxPunchDist;
     List<Collider> Colliders;
@@ -19,6 +20,8 @@ public class Punching : MonoBehaviour
     List<float> rigidbodies = new List<float>{0, 0};
     public GameObject cam;
     public bool punchOnlyWhenReturned = true;
+    public float minSlowdownDist;
+    public float slowdownValue;
 
     //guarding
     public float glovesYFace;
@@ -51,7 +54,15 @@ public class Punching : MonoBehaviour
     }
     void Update()
     {
+        List<float> endTimeScale = new List<float>{1f, 1f};
         for(int i = 0; i <= 1; i++){
+            float dist = Distance3D(Gloves[i].transform.position - Enemy.transform.position);
+            if(dist <= minSlowdownDist){
+                endTimeScale[i] = dist / slowdownValue;
+            } 
+
+            Debug.Log("dist: " + dist);
+            Debug.Log("slow: " + dist/slowdownValue);
             if(!bodyGuard[i]){
             restingPos = new List<Vector3> {initialTransform[0] + new Vector3(glovesXFace, glovesYFace, 0), initialTransform[1] + new Vector3(-glovesXFace, glovesYFace, 0)};
             }
@@ -75,6 +86,14 @@ public class Punching : MonoBehaviour
                 Colliders[i].enabled = false;
             }
         }
+
+        if(endTimeScale[0] <= endTimeScale[1]){
+            Time.timeScale = endTimeScale[0];
+        }
+        else{
+            Time.timeScale = endTimeScale[1];
+        }
+        Debug.Log(Time.timeScale);
     }
 
     float Distance3D(Vector3 loc){
