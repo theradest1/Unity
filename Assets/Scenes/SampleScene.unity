@@ -457,7 +457,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &285817269
 PrefabInstance:
@@ -533,6 +533,7 @@ GameObject:
   - component: {fileID: 330849828}
   - component: {fileID: 330849829}
   - component: {fileID: 330849830}
+  - component: {fileID: 330849831}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -558,7 +559,7 @@ Transform:
   - {fileID: 1010636280}
   - {fileID: 892205300}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &330849828
 MonoBehaviour:
@@ -580,7 +581,7 @@ MonoBehaviour:
   Enemy: {fileID: 62509508}
   lookSmoothing: 0.015
   leanSpeed: 0.05
-  leanTarget: 15
+  leanTarget: {x: 22, y: 22}
 --- !u!143 &330849829
 CharacterController:
   m_ObjectHideFlags: 0
@@ -625,42 +626,46 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 330849828}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: Jump
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: PlayerMovement.Jump()
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: d2d2c7d6-ae2d-4866-9b5f-8c5a84181173
-    m_ActionName: Player/Jump[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 330849828}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: move
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 8a122048-4a56-4bf8-aa47-1d0dfc27e91e
     m_ActionName: Player/New action
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ea8f182c-2920-4d34-b505-3d62af6938b5
+    m_ActionName: Player/LeftFist[/DualShock4GamepadHID/leftStick/up,/DualShock4GamepadHID/leftStick/down,/DualShock4GamepadHID/leftStick/left,/DualShock4GamepadHID/leftStick/right,/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 40d7dfb7-91d8-4cb1-a5cf-9132fce5c3c4
+    m_ActionName: Player/RightFist[/DualShock4GamepadHID/rightStick/up,/DualShock4GamepadHID/rightStick/down,/DualShock4GamepadHID/rightStick/left,/DualShock4GamepadHID/rightStick/right,/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6ffe7959-5740-480d-a5ea-7d87a13b6944
+    m_ActionName: Player/Dodge[/DualShock4GamepadHID/buttonNorth,/DualShock4GamepadHID/buttonSouth,/DualShock4GamepadHID/buttonWest,/DualShock4GamepadHID/buttonEast,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &330849831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330849826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1459199d2e8fb274089ce153e634aefc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  punchingSpeed: 80000
+  returnSpeed: 15
+  maxPunchDist: 4
+  rigidbodyOnTime: 0.2
+  cam: {fileID: 963194225}
+  punchOnlyWhenReturned: 0
+  glovesYFace: 0.43
+  glovesXFace: 0.16
 --- !u!1 &480950874
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,7 +807,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &635792621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -817,7 +822,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smoothing: 0.9
   punchDist: 1000
-  GloveManager: {fileID: 747794206}
+  GloveManager: {fileID: 0}
   Player: {fileID: 330849826}
   calibrationMode: 1
   pcInput: 1
@@ -1002,58 +1007,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &747794206
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 747794207}
-  - component: {fileID: 747794208}
-  m_Layer: 0
-  m_Name: gloveManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &747794207
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 747794206}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &747794208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 747794206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1459199d2e8fb274089ce153e634aefc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  punchingSpeed: 80000
-  returnSpeed: 30
-  maxPunchDist: 5
-  player: {fileID: 330849826}
-  rigidbodyOnTime: 0.2
-  cam: {fileID: 963194225}
-  punchOnlyWhenReturned: 0
-  glovesYFace: 0.43
-  glovesXFace: 0.16
 --- !u!4 &892205300 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7992280646442612715, guid: cd490bfedc6bcc440acc9d2512ebe4e6, type: 3}
@@ -1473,7 +1426,7 @@ Transform:
   - {fileID: 1490379284}
   - {fileID: 1574011933}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1221751058
 GameObject:
@@ -1585,7 +1538,7 @@ Transform:
   m_Children:
   - {fileID: 62509509}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1490379283
 GameObject:
@@ -2127,7 +2080,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2043306138 stripped
 GameObject:
@@ -2155,6 +2108,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 330849827}
     m_Modifications:
+    - target: {fileID: 2916691842658455936, guid: cd490bfedc6bcc440acc9d2512ebe4e6, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7992280646442612704, guid: cd490bfedc6bcc440acc9d2512ebe4e6, type: 3}
       propertyPath: m_Name
       value: GloveLeft

@@ -14,7 +14,6 @@ public class Punching : MonoBehaviour
 
     public float maxPunchDist;
     List<Collider> Colliders;
-    public GameObject player;
     public float rigidbodyOnTime = 2f;
     List<float> rigidbodies = new List<float>{0, 0};
     public GameObject cam;
@@ -35,15 +34,18 @@ public class Punching : MonoBehaviour
         restingPos = initialTransform;
     }
 
-    public void punch(int i){
+    public void punch(List <Vector2> vectors){
         //Debug.Log(Distance3D(Gloves[i].transform.localPosition - initialTransform[i]));
-        if(Distance3D(Gloves[i].transform.localPosition - initialTransform[i]) <= .3f || !punchOnlyWhenReturned){
-            //Debug.Log("punch");
-            RBs[i].AddForce(cam.transform.forward * punchingSpeed * Time.deltaTime);
-            RBs[i].isKinematic = false;
-            trails[i].enableEmission = true;
-            rigidbodies[i] = rigidbodyOnTime;
-            Colliders[i].enabled = true;
+        for(int i = 0; i <= 1; i++){
+            if(Distance3D(Gloves[i].transform.localPosition - initialTransform[i]) <= maxPunchDist && vectors[i] != Vector2.zero){
+                //Debug.Log("punch");
+                RBs[i].AddRelativeForce(new Vector3(vectors[i].x, 0, vectors[i].y) * punchingSpeed * Time.deltaTime);
+                RBs[i].isKinematic = false;
+                trails[i].enableEmission = true;
+                rigidbodies[i] = rigidbodyOnTime;
+                Colliders[i].enabled = true;
+            }
+            Debug.Log(vectors[i]);
         }
     }
     void Update()
