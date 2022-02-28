@@ -93,7 +93,7 @@ public class Punching : MonoBehaviour
             Time.timeScale = endTimeScale[1];
         }
         Time.timeScale = Mathf.Clamp(Time.timeScale, minSlowdown, maxSlowdown);
-        Debug.Log(Time.timeScale);
+        //Debug.Log(Time.timeScale);
     }
 
     float Distance3D(Vector3 loc){
@@ -114,11 +114,11 @@ public class Punching : MonoBehaviour
     public void RightSwitchGuard(InputAction.CallbackContext context){
         if(context.performed){
             bodyGuard[1] = false;
-            Debug.Log("guard face");
+            //Debug.Log("guard face");
         }
         else if(context.canceled){
             bodyGuard[1] = true;
-            Debug.Log("guard body");
+            //Debug.Log("guard body");
         }
     }
 

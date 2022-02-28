@@ -32,7 +32,7 @@ public class Health : MonoBehaviour
     {   
         float strength = collision.relativeVelocity.magnitude;
 
-        Debug.Log(strength);
+        //Debug.Log(strength);
         //Debug.Log(strength);
         if(strength > minStrength){
             Instantiate(hitParticles, collision.contacts[0].point, healthBarCanvas.transform.rotation);
