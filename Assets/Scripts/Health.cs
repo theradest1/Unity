@@ -37,11 +37,13 @@ public class Health : MonoBehaviour
         if(strength > minStrength){
             Instantiate(hitParticles, collision.contacts[0].point, healthBarCanvas.transform.rotation);
             health -= strength/resistance;
-            healthBar.value = health/maxHealth;
 
             if(health <= 0){
-                Destroy(this.gameObject);
+                health = maxHealth;
             }
+
+            healthBar.value = health/maxHealth;
+
         }
     }
 }
