@@ -62,6 +62,42 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""LeftBlockSwitch"",
+                    ""type"": ""Button"",
+                    ""id"": ""cb7e00c1-370a-4236-8fe9-7aa9faa201e0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightBlockSwitch"",
+                    ""type"": ""Button"",
+                    ""id"": ""0c1292d1-ff66-4b44-b392-cc018530215d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeftHitSwitch"",
+                    ""type"": ""Button"",
+                    ""id"": ""e2c4834b-df4d-4a55-82ab-008e8e417e42"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightHitSwitch"",
+                    ""type"": ""Button"",
+                    ""id"": ""0a07eba5-331a-4716-ad99-82f97f4b4735"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -416,6 +452,50 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Dodge"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3fe801e8-6067-4156-9d46-a0bd263c60f7"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""LeftBlockSwitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6ddeb76a-945b-4be8-af81-d4672abf4ad2"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""RightBlockSwitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ca635748-5146-4f3a-b71d-3afcbb46ebf1"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""LeftHitSwitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bc34e413-695f-4a1f-bad1-e7f3566cc243"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""RightHitSwitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -451,6 +531,10 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Player_LeftFist = m_Player.FindAction("LeftFist", throwIfNotFound: true);
         m_Player_RightFist = m_Player.FindAction("RightFist", throwIfNotFound: true);
         m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
+        m_Player_LeftBlockSwitch = m_Player.FindAction("LeftBlockSwitch", throwIfNotFound: true);
+        m_Player_RightBlockSwitch = m_Player.FindAction("RightBlockSwitch", throwIfNotFound: true);
+        m_Player_LeftHitSwitch = m_Player.FindAction("LeftHitSwitch", throwIfNotFound: true);
+        m_Player_RightHitSwitch = m_Player.FindAction("RightHitSwitch", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -514,6 +598,10 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_LeftFist;
     private readonly InputAction m_Player_RightFist;
     private readonly InputAction m_Player_Dodge;
+    private readonly InputAction m_Player_LeftBlockSwitch;
+    private readonly InputAction m_Player_RightBlockSwitch;
+    private readonly InputAction m_Player_LeftHitSwitch;
+    private readonly InputAction m_Player_RightHitSwitch;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -522,6 +610,10 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @LeftFist => m_Wrapper.m_Player_LeftFist;
         public InputAction @RightFist => m_Wrapper.m_Player_RightFist;
         public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
+        public InputAction @LeftBlockSwitch => m_Wrapper.m_Player_LeftBlockSwitch;
+        public InputAction @RightBlockSwitch => m_Wrapper.m_Player_RightBlockSwitch;
+        public InputAction @LeftHitSwitch => m_Wrapper.m_Player_LeftHitSwitch;
+        public InputAction @RightHitSwitch => m_Wrapper.m_Player_RightHitSwitch;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -543,6 +635,18 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Dodge.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
                 @Dodge.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
                 @Dodge.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
+                @LeftBlockSwitch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftBlockSwitch;
+                @LeftBlockSwitch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftBlockSwitch;
+                @LeftBlockSwitch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftBlockSwitch;
+                @RightBlockSwitch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightBlockSwitch;
+                @RightBlockSwitch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightBlockSwitch;
+                @RightBlockSwitch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightBlockSwitch;
+                @LeftHitSwitch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftHitSwitch;
+                @LeftHitSwitch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftHitSwitch;
+                @LeftHitSwitch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftHitSwitch;
+                @RightHitSwitch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightHitSwitch;
+                @RightHitSwitch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightHitSwitch;
+                @RightHitSwitch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightHitSwitch;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -559,6 +663,18 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Dodge.started += instance.OnDodge;
                 @Dodge.performed += instance.OnDodge;
                 @Dodge.canceled += instance.OnDodge;
+                @LeftBlockSwitch.started += instance.OnLeftBlockSwitch;
+                @LeftBlockSwitch.performed += instance.OnLeftBlockSwitch;
+                @LeftBlockSwitch.canceled += instance.OnLeftBlockSwitch;
+                @RightBlockSwitch.started += instance.OnRightBlockSwitch;
+                @RightBlockSwitch.performed += instance.OnRightBlockSwitch;
+                @RightBlockSwitch.canceled += instance.OnRightBlockSwitch;
+                @LeftHitSwitch.started += instance.OnLeftHitSwitch;
+                @LeftHitSwitch.performed += instance.OnLeftHitSwitch;
+                @LeftHitSwitch.canceled += instance.OnLeftHitSwitch;
+                @RightHitSwitch.started += instance.OnRightHitSwitch;
+                @RightHitSwitch.performed += instance.OnRightHitSwitch;
+                @RightHitSwitch.canceled += instance.OnRightHitSwitch;
             }
         }
     }
@@ -587,5 +703,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnLeftFist(InputAction.CallbackContext context);
         void OnRightFist(InputAction.CallbackContext context);
         void OnDodge(InputAction.CallbackContext context);
+        void OnLeftBlockSwitch(InputAction.CallbackContext context);
+        void OnRightBlockSwitch(InputAction.CallbackContext context);
+        void OnLeftHitSwitch(InputAction.CallbackContext context);
+        void OnRightHitSwitch(InputAction.CallbackContext context);
     }
 }

@@ -641,6 +641,46 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 6ffe7959-5740-480d-a5ea-7d87a13b6944
     m_ActionName: Player/Dodge[/DualShock4GamepadHID/buttonNorth,/DualShock4GamepadHID/buttonSouth,/DualShock4GamepadHID/buttonWest,/DualShock4GamepadHID/buttonEast,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 330849831}
+        m_TargetAssemblyTypeName: Punching, Assembly-CSharp
+        m_MethodName: LeftSwitchGuard
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: cb7e00c1-370a-4236-8fe9-7aa9faa201e0
+    m_ActionName: Player/LeftBlockSwitch[/DualShock4GamepadHID/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 330849831}
+        m_TargetAssemblyTypeName: Punching, Assembly-CSharp
+        m_MethodName: RightSwitchGuard
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0c1292d1-ff66-4b44-b392-cc018530215d
+    m_ActionName: Player/RightBlockSwitch[/DualShock4GamepadHID/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e2c4834b-df4d-4a55-82ab-008e8e417e42
+    m_ActionName: Player/LeftHitSwitch[/DualShock4GamepadHID/leftShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0a07eba5-331a-4716-ad99-82f97f4b4735
+    m_ActionName: Player/RightHitSwitch[/DualShock4GamepadHID/rightShoulder]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
