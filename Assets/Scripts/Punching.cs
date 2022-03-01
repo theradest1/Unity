@@ -58,7 +58,7 @@ public class Punching : MonoBehaviour
     {
         List<float> endTimeScale = new List<float>{1f, 1f};
         for(int i = 0; i <= 1; i++){
-            endTimeScale[i] = Distance3D(Gloves[i].transform.position - Enemy.transform.position) / slowdownValue;
+            endTimeScale[i] = Mathf.Clamp(Distance3D(Gloves[i].transform.position - Enemy.transform.position) / slowdownValue, minSlowdown, maxSlowdown);
 
             //Debug.Log("dist: " + dist);
             //Debug.Log("slow: " + dist/slowdownValue);
@@ -92,7 +92,6 @@ public class Punching : MonoBehaviour
         else{
             Time.timeScale = endTimeScale[1];
         }
-        Time.timeScale = Mathf.Clamp(Time.timeScale, minSlowdown, maxSlowdown);
         //Debug.Log(Time.timeScale);
     }
 
