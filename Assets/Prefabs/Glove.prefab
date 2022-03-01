@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7992280646442612710}
   - component: {fileID: 7992280646442612711}
   - component: {fileID: 5691305213859652439}
+  - component: {fileID: -4426603015912822534}
   m_Layer: 0
   m_Name: Glove
   m_TagString: Untagged
@@ -220,3 +221,25 @@ TrailRenderer:
   m_MinVertexDistance: 0.001
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &-4426603015912822534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7992280646442612704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e79a5d0efe2cbf14586f65cd4f66cbc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidbodyOn: 0
+  bodyGuard: 1
+  gloveObject: {fileID: 7992280646442612704}
+  trail: {fileID: 5691305213859652439}
+  collider: {fileID: 7992280646442612710}
+  RB: {fileID: 7992280646442612711}
+  initialTransform: {x: 0, y: 0, z: 0}
+  restingPos: {x: 0, y: 0, z: 0}
+  RBOn: 0
+  gloveXFace: 0

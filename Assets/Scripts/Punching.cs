@@ -5,85 +5,71 @@ using UnityEngine.InputSystem;
 
 public class Punching : MonoBehaviour
 {
-    private List<GameObject> Gloves;
-    private List<TrailRenderer> trails;
-    private List<Vector3> initialTransform;
-    private List<Vector3> restingPos;
-    private List<Rigidbody> RBs;
+
+    List<Glove> gloves;
     public float punchingSpeed;
     public float returnSpeed;
     public GameObject Enemy;
-
     public float maxPunchDist;
-    List<Collider> Colliders;
-    public float rigidbodyOnTime = 2f;
-    List<float> rigidbodies = new List<float>{0, 0};
+    public float rigidbodyOnTime;
     public GameObject cam;
-    public bool punchOnlyWhenReturned = true;
+    public bool punchOnlyWhenReturned;
     public float minSlowdown;
     public float maxSlowdown;
     public float slowdownValue;
 
 
     //guarding
-    public float glovesYFace;
+    public float gloveYFace;
     public float glovesXFace; //for making them go close together to look cool
-    List<bool> bodyGuard = new List<bool>{true, true};
 
     void Start()
     {
-        Gloves = new List<GameObject>{GameObject.Find("GloveLeft"), GameObject.Find("GloveRight")};
-        trails = new List<TrailRenderer>{Gloves[0].GetComponent<TrailRenderer>(), Gloves[1].GetComponent<TrailRenderer>()};
-        RBs = new List<Rigidbody>{Gloves[0].GetComponent<Rigidbody>(), Gloves[1].GetComponent<Rigidbody>()};
-        Colliders = new List<Collider>{Gloves[0].GetComponent<Collider>(), Gloves[1].GetComponent<Collider>()};
-        initialTransform = new List<Vector3> {Gloves[0].transform.localPosition, Gloves[1].transform.localPosition}; //Remember to get local position (:
-        restingPos = initialTransform;
+        gloves = new List<Glove>{GameObject.Find("LeftGlove").GetComponent<Glove>(), GameObject.Find("RightGlove").GetComponent<Glove>()};
     }
 
     public void punch(List <Vector2> vectors){
-        //Debug.Log(Distance3D(Gloves[i].transform.localPosition - initialTransform[i]));
-        for(int i = 0; i <= 1; i++){
-            if(Distance3D(Gloves[i].transform.localPosition - initialTransform[i]) <= maxPunchDist && vectors[i] != Vector2.zero){
-                //Debug.Log("punch");
-                RBs[i].AddRelativeForce(new Vector3(vectors[i].x, 0, vectors[i].y) * punchingSpeed * Time.deltaTime);
-                RBs[i].isKinematic = false;
-                trails[i].emitting = true;
-                rigidbodies[i] = rigidbodyOnTime;
-                Colliders[i].enabled = true;
+        int i = 0;
+        foreach(Glove glove in gloves){
+            if(Distance3D(glove.transform.localPosition - glove.initialTransform) <= maxPunchDist && vectors[i] != Vector2.zero){
+                glove.RB.AddRelativeForce(new Vector3(vectors[i].x, 0, vectors[i].y) * punchingSpeed * Time.deltaTime);
+                glove.RB.isKinematic = false;
+                glove.trail.emitting = true;
+                glove.RBOn = rigidbodyOnTime;
+                glove.GetComponent<Collider>().enabled = true;
             }
-            //Debug.Log(vectors[i]);
+            i++;
         }
     }
     void Update()
     {
         List<float> endTimeScale = new List<float>{1f, 1f};
-        for(int i = 0; i <= 1; i++){
-            endTimeScale[i] = Mathf.Clamp(Distance3D(Gloves[i].transform.position - Enemy.transform.position) / slowdownValue, minSlowdown, maxSlowdown);
-
-            //Debug.Log("dist: " + dist);
-            //Debug.Log("slow: " + dist/slowdownValue);
-            if(!bodyGuard[i]){
-            restingPos = new List<Vector3> {initialTransform[0] + new Vector3(glovesXFace, glovesYFace, 0), initialTransform[1] + new Vector3(-glovesXFace, glovesYFace, 0)};
+        int i = 0;
+        foreach(Glove glove in gloves){
+            endTimeScale[i] = Mathf.Clamp(Distance3D(glove.transform.position - Enemy.transform.position) / slowdownValue, minSlowdown, maxSlowdown);
+            if(!glove.bodyGuard){
+                glove.restingPos = glove.initialTransform + new Vector3(gloveYFace, glove.gloveXFace);
             }
             else{
-                restingPos = initialTransform;
+                glove.restingPos = glove.initialTransform;
             }
 
-            if(Distance3D(Gloves[i].transform.localPosition - restingPos[i]) >= maxPunchDist){
-                rigidbodies[i] = 0;
+            if(Distance3D(glove.transform.localPosition - glove.restingPos) >= maxPunchDist){
+                glove.RBOn = 0f;
             }
-            if(rigidbodies[i] > 0){
-                rigidbodies[i] -= Time.deltaTime;
+            if(glove.RBOn > 0f){
+                glove.RBOn -= Time.deltaTime;
             }
-            if(rigidbodies[i] <= 0 && RBs[i].isKinematic == false){
-                RBs[i].isKinematic = true;
-                trails[i].emitting = false;
+            if(glove.RBOn <= 0 && glove.RB.isKinematic == false){
+                glove.RB.isKinematic = true;
+                glove.trail.emitting = false;
             }
 
-            if(RBs[i].isKinematic){
-                Gloves[i].transform.localPosition = moveTowards(Gloves[i].transform.localPosition, restingPos[i], returnSpeed * Distance3D(Gloves[i].transform.localPosition - restingPos[i]));
-                Colliders[i].enabled = false;
+            if(glove.RB.isKinematic){
+                glove.transform.localPosition = moveTowards(glove.transform.localPosition, glove.restingPos, returnSpeed * Distance3D(glove.transform.localPosition - glove.restingPos));
+                glove.GetComponent<Collider>().enabled = false;
             }
+            i++;
         }
 
         if(endTimeScale[0] <= endTimeScale[1]){
@@ -100,7 +86,7 @@ public class Punching : MonoBehaviour
         return dist;
     }
 
-    public void LeftSwitchGuard(InputAction.CallbackContext context){
+    /*public void LeftSwitchGuard(InputAction.CallbackContext context){
         if(context.performed){
             bodyGuard[0] = false;
             Debug.Log("guard face");
@@ -119,7 +105,7 @@ public class Punching : MonoBehaviour
             bodyGuard[1] = true;
             //Debug.Log("guard body");
         }
-    }
+    }*/
 
     Vector3 moveTowards(Vector3 location, Vector3 target, float speed){
         Vector3 vector = Vector3.MoveTowards(location, target, speed * Time.deltaTime);
