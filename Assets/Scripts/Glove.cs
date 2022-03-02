@@ -14,6 +14,7 @@ public class Glove : MonoBehaviour
     public Vector3 restingPos;
     public float RBOn;
     public float gloveXFace;
+    public float gloveYFace;
 
     //Start is called before the first frame update
     void Start()

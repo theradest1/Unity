@@ -241,5 +241,6 @@ MonoBehaviour:
   RB: {fileID: 7992280646442612711}
   initialTransform: {x: 0, y: 0, z: 0}
   restingPos: {x: 0, y: 0, z: 0}
-  RBOn: 0
-  gloveXFace: 0
+  RBOn: 0.2
+  gloveXFace: 0.2
+  gloveYFace: 0.4

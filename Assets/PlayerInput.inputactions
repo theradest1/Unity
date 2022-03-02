@@ -48,16 +48,16 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "RightBlockSwitch",
                     "type": "Button",
-                    "id": "0c1292d1-ff66-4b44-b392-cc018530215d",
+                    "id": "e1b6fb4b-4bfd-4995-b666-6303344da4ca",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "LeftHitSwitch",
@@ -433,28 +433,6 @@
                 },
                 {
                     "name": "",
-                    "id": "3fe801e8-6067-4156-9d46-a0bd263c60f7",
-                    "path": "<Gamepad>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "LeftBlockSwitch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6ddeb76a-945b-4be8-af81-d4672abf4ad2",
-                    "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "RightBlockSwitch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "ca635748-5146-4f3a-b71d-3afcbb46ebf1",
                     "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
@@ -472,6 +450,28 @@
                     "processors": "",
                     "groups": "Controller",
                     "action": "RightHitSwitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cc0170bc-04c2-4b8f-a796-cbef00af338c",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "LeftBlockSwitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "116b7b2e-ceb0-4aeb-9c68-bd34725a3a94",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "RightBlockSwitch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

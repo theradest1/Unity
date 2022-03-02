@@ -18,11 +18,6 @@ public class Punching : MonoBehaviour
     public float maxSlowdown;
     public float slowdownValue;
 
-
-    //guarding
-    public float gloveYFace;
-    public float glovesXFace; //for making them go close together to look cool
-
     void Start()
     {
         gloves = new List<Glove>{GameObject.Find("LeftGlove").GetComponent<Glove>(), GameObject.Find("RightGlove").GetComponent<Glove>()};
@@ -46,13 +41,8 @@ public class Punching : MonoBehaviour
         List<float> endTimeScale = new List<float>{1f, 1f};
         int i = 0;
         foreach(Glove glove in gloves){
+            Debug.Log(glove.restingPos);
             endTimeScale[i] = Mathf.Clamp(Distance3D(glove.transform.position - Enemy.transform.position) / slowdownValue, minSlowdown, maxSlowdown);
-            if(!glove.bodyGuard){
-                glove.restingPos = glove.initialTransform + new Vector3(gloveYFace, glove.gloveXFace);
-            }
-            else{
-                glove.restingPos = glove.initialTransform;
-            }
 
             if(Distance3D(glove.transform.localPosition - glove.restingPos) >= maxPunchDist){
                 glove.RBOn = 0f;
@@ -86,26 +76,24 @@ public class Punching : MonoBehaviour
         return dist;
     }
 
-    /*public void LeftSwitchGuard(InputAction.CallbackContext context){
+    public void LeftSwitchGuard(InputAction.CallbackContext context){
         if(context.performed){
-            bodyGuard[0] = false;
-            Debug.Log("guard face");
+            gloves[0].restingPos = gloves[0].initialTransform + new Vector3(gloves[0].gloveXFace, gloves[0].gloveYFace, 0f);
         }
         else if(context.canceled){
-            bodyGuard[0] = true;
-            Debug.Log("guard body");
+            gloves[0].restingPos = gloves[0].initialTransform;
+
         }
     }
     public void RightSwitchGuard(InputAction.CallbackContext context){
         if(context.performed){
-            bodyGuard[1] = false;
-            //Debug.Log("guard face");
+            gloves[1].restingPos = gloves[1].initialTransform + new Vector3(-gloves[1].gloveXFace, gloves[1].gloveYFace, 0f);
         }
         else if(context.canceled){
-            bodyGuard[1] = true;
-            //Debug.Log("guard body");
+            gloves[1].restingPos = gloves[1].initialTransform;
+
         }
-    }*/
+    }
 
     Vector3 moveTowards(Vector3 location, Vector3 target, float speed){
         Vector3 vector = Vector3.MoveTowards(location, target, speed * Time.deltaTime);
