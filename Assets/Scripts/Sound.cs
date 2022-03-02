@@ -23,6 +23,6 @@ public class Sound : MonoBehaviour
 
     public void hitSounds(){
         hit.Play();
-        excited.PlayDelayed(1);
+        excited.Play();
     }
 }

@@ -14,12 +14,12 @@ public class Health : MonoBehaviour
     public GameObject player;
     public GameObject hitParticles;
     public float minStrength;
-    //Sounds sounds;
+    Sound sound;
 
     // Start is called before the first frame update
     void Start()
     {
-        //sounds = GameObject.Find("SoundManager").GetComponent<Sounds>();
+        sound = GameObject.Find("SoundManager").GetComponent<Sound>();
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public class Health : MonoBehaviour
         //Debug.Log(strength);
         //Debug.Log(strength);
         if(strength > minStrength){
-            //sounds.hitSounds();
+            sound.hitSounds();
             Instantiate(hitParticles, collision.contacts[0].point, healthBarCanvas.transform.rotation);
             health -= strength/resistance;
 
