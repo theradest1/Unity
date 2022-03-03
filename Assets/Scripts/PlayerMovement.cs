@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     private PlayerInput inputs;
     private Punching punching;
     private float playerY;
+    public Vector2 limitX;
+    public Vector2 limitZ;
 
     private void Awake()
     {
@@ -61,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
     public void move(Vector2 move){
         Vector3 add = this.transform.position + this.transform.forward * move.y * Time.deltaTime * playerSpeed + this.transform.right * move.x * Time.deltaTime * playerSpeed;
         this.transform.position = new Vector3(add.x, playerY, add.z);
+        this.transform.position = new Vector3(Mathf.Clamp(this.transform.position.x, limitX.x, limitX.y), playerY, Mathf.Clamp(this.transform.position.z, limitZ.x, limitZ.y));
         lookPlace.transform.position += this.transform.forward * move.y * Time.deltaTime * playerSpeed + this.transform.right * move.x * Time.deltaTime * playerSpeed;
     }
 

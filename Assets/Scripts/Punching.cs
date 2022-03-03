@@ -41,7 +41,6 @@ public class Punching : MonoBehaviour
         List<float> endTimeScale = new List<float>{1f, 1f};
         int i = 0;
         foreach(Glove glove in gloves){
-            Debug.Log(glove.restingPos);
             endTimeScale[i] = Mathf.Clamp(Distance3D(glove.transform.position - Enemy.transform.position) / slowdownValue, minSlowdown, maxSlowdown);
 
             if(Distance3D(glove.transform.localPosition - glove.restingPos) >= maxPunchDist){
