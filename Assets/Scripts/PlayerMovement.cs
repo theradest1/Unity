@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject cam;
     public GameObject lookPlace;
     public GameObject Enemy;
+    public GameObject EnemyHead;
     public float lookSmoothing = .02f;
     public float leanSpeed;
     public Vector2 leanTarget;
@@ -24,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private float playerY;
     public Vector2 limitX;
     public Vector2 limitZ;
+    public GameObject punchTarget;
 
     private void Awake()
     {
@@ -44,13 +47,14 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         punching = this.GetComponent<Punching>();
         playerY = this.transform.position.y;
+        punchTarget = Enemy;
     }
 
     // Update is called once per frame
     void Update()
     {
         //looking
-        lookPlace.transform.position = Vector3.Lerp(lookPlace.transform.position, Enemy.transform.position, lookSmoothing * Time.deltaTime);
+        lookPlace.transform.position = Vector3.Lerp(lookPlace.transform.position, punchTarget.transform.position, lookSmoothing * Time.deltaTime);
         this.transform.LookAt(lookPlace.transform.position);
 
         cam.transform.LookAt(lookPlace.transform.position);
@@ -76,5 +80,14 @@ public class PlayerMovement : MonoBehaviour
     float Distance3D(Vector3 loc){
         float dist = Mathf.Sqrt(loc.x * loc.x + loc.y * loc.y + loc.z * loc.z);
         return dist;
+    }
+
+    public void switchTarget(InputAction.CallbackContext context){
+        if(context.performed){
+            punchTarget = EnemyHead;
+        }   
+        else if(context.canceled){
+            punchTarget = Enemy;
+        }
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -307,13 +307,13 @@ Transform:
   m_GameObject: {fileID: 51758623}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.529, z: 0}
-  m_LocalScale: {x: 1, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.7, y: 1, z: 0.7}
   m_Children: []
   m_Father: {fileID: 62509509}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &51758625
-CapsuleCollider:
+--- !u!135 &51758625
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -322,9 +322,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
+  serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &51758626
 MeshRenderer:
@@ -374,7 +373,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 51758623}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &62509508
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,7 +389,7 @@ GameObject:
   - component: {fileID: 62509514}
   - component: {fileID: 62509515}
   m_Layer: 0
-  m_Name: Body
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -404,7 +403,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62509508}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.39, y: -0.159, z: 11.79}
+  m_LocalPosition: {x: 0.39, y: -0.08, z: 11.79}
   m_LocalScale: {x: 1, y: 0.8, z: 1}
   m_Children:
   - {fileID: 1148409759}
@@ -420,13 +419,13 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62509508}
   serializedVersion: 2
-  m_Mass: 100
+  m_Mass: 50
   m_Drag: 5
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!23 &62509512
 MeshRenderer:
@@ -491,13 +490,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   health: 100
-  height: 2
+  height: 1.75
   healthBar: {fileID: 480950876}
   healthBarCanvas: {fileID: 1148409762}
   resistance: 10
   player: {fileID: 330849826}
   hitParticles: {fileID: 1778088926587971233, guid: 537bb4285a1b0a24f9614a0395c75750, type: 3}
   minStrength: 20
+  head: {fileID: 51758623}
+  critDmg: 2
 --- !u!136 &62509515
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1311,11 +1312,13 @@ MonoBehaviour:
   cam: {fileID: 963194225}
   lookPlace: {fileID: 188884670}
   Enemy: {fileID: 62509508}
+  EnemyHead: {fileID: 51758623}
   lookSmoothing: 9
   leanSpeed: 0.05
   leanTarget: {x: 22, y: 22}
-  limitX: {x: -8.22, y: 8.22}
+  limitX: {x: -8.22, y: 8.15}
   limitZ: {x: 0.64, y: 17.04}
+  punchTarget: {fileID: 0}
 --- !u!136 &330849829
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1325,7 +1328,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 330849826}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
@@ -1388,13 +1391,21 @@ MonoBehaviour:
     m_ActionId: cb7e00c1-370a-4236-8fe9-7aa9faa201e0
     m_ActionName: Player/LeftBlockSwitch[/DualShock4GamepadHID/leftTrigger]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 330849828}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: switchTarget
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: e2c4834b-df4d-4a55-82ab-008e8e417e42
     m_ActionName: Player/LeftHitSwitch[/DualShock4GamepadHID/leftShoulder]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0a07eba5-331a-4716-ad99-82f97f4b4735
-    m_ActionName: Player/RightHitSwitch[/DualShock4GamepadHID/rightShoulder]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 330849831}
@@ -1451,7 +1462,7 @@ MonoBehaviour:
   rigidbodyOnTime: 0.15
   cam: {fileID: 963194225}
   punchOnlyWhenReturned: 1
-  minSlowdown: 0.1
+  minSlowdown: 1
   maxSlowdown: 1
   slowdownValue: 3
 --- !u!1 &435265405
@@ -1874,10 +1885,10 @@ MonoBehaviour:
   bored: {fileID: 645887320}
   excited: {fileID: 733978716}
   excitedTimeAdd: 1.5
-  volumeChear: {x: 0.1, y: 1}
-  excitedSpeedUp: 1
-  excitedSpeedDown: 0.2
-  chantingStartTime: 15
+  volumeChear: {x: 0, y: 0}
+  excitedSpeedUp: 0
+  excitedSpeedDown: 0
+  chantingStartTime: 0
 --- !u!4 &494508867
 Transform:
   m_ObjectHideFlags: 0
@@ -3172,7 +3183,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 2.317}
   m_SizeDelta: {x: 950, y: 634}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1148409760
@@ -3611,7 +3622,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1387194767
 RectTransform:
   m_ObjectHideFlags: 0

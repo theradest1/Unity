@@ -60,22 +60,13 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "LeftHitSwitch",
+                    "name": "HitSwitch",
                     "type": "Button",
                     "id": "e2c4834b-df4d-4a55-82ab-008e8e417e42",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "RightHitSwitch",
-                    "type": "Button",
-                    "id": "0a07eba5-331a-4716-ad99-82f97f4b4735",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Menu",
@@ -447,18 +438,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
-                    "action": "LeftHitSwitch",
+                    "action": "HitSwitch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "bc34e413-695f-4a1f-bad1-e7f3566cc243",
+                    "id": "7115991f-5547-4296-b6ad-9dfbe7f2699b",
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
-                    "action": "RightHitSwitch",
+                    "action": "HitSwitch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
