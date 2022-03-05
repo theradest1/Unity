@@ -15,6 +15,8 @@ public class Health : MonoBehaviour
     public GameObject hitParticles;
     public float minStrength;
     Sound sound;
+    public GameObject head;
+    public float critDmg;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +40,11 @@ public class Health : MonoBehaviour
         if(strength > minStrength){
             sound.hitSounds();
             Instantiate(hitParticles, collision.contacts[0].point, healthBarCanvas.transform.rotation);
+
+            if(collision.GetContact(0).thisCollider.gameObject == head){
+                strength *= critDmg;
+            }
+
             health -= strength/resistance;
 
             if(health <= 0){

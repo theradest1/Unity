@@ -90,7 +90,6 @@ public class Punching : MonoBehaviour
         }
         else if(context.canceled){
             gloves[1].restingPos = gloves[1].initialTransform;
-
         }
     }
 

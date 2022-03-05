@@ -40,7 +40,7 @@ public class Sound : MonoBehaviour
         
         excitedTimer -= Time.deltaTime;
         //Debug.Log("Timer: " + excitedTimer);
-        Debug.Log("Timer: " + excitedTimer);
+        //Debug.Log("Timer: " + excitedTimer);
     }
 
     public void hitSounds(){
