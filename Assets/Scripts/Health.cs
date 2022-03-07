@@ -34,6 +34,7 @@ public class Health : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {   
         float strength = collision.relativeVelocity.magnitude;
+        collision.gameObject.GetComponent<Glove>().ableToPunch = false;
 
         //Debug.Log(strength);
         //Debug.Log(strength);
@@ -43,6 +44,7 @@ public class Health : MonoBehaviour
 
             if(collision.GetContact(0).thisCollider.gameObject == head){
                 strength *= critDmg;
+                Debug.Log("head hit");
             }
 
             health -= strength/resistance;

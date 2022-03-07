@@ -23,15 +23,18 @@ public class Punching : MonoBehaviour
         gloves = new List<Glove>{GameObject.Find("LeftGlove").GetComponent<Glove>(), GameObject.Find("RightGlove").GetComponent<Glove>()};
     }
 
-    public void punch(List <Vector2> vectors){
+    public async void punch(List <Vector2> vectors){
         int i = 0;
         foreach(Glove glove in gloves){
-            if(Distance3D(glove.transform.localPosition - glove.initialTransform) <= maxPunchDist && vectors[i] != Vector2.zero){
+            if(Distance3D(glove.transform.localPosition - glove.initialTransform) <= maxPunchDist && vectors[i] != Vector2.zero && glove.ableToPunch){
                 glove.RB.AddRelativeForce(new Vector3(vectors[i].x, 0, vectors[i].y) * punchingSpeed * Time.deltaTime);
                 glove.RB.isKinematic = false;
                 glove.trail.emitting = true;
                 glove.RBOn = rigidbodyOnTime;
                 glove.GetComponent<Collider>().enabled = true;
+            }
+            if(vectors[i] == Vector2.zero){
+                glove.ableToPunch = false;
             }
             i++;
         }
@@ -57,6 +60,9 @@ public class Punching : MonoBehaviour
             if(glove.RB.isKinematic){
                 glove.transform.localPosition = moveTowards(glove.transform.localPosition, glove.restingPos, returnSpeed * Distance3D(glove.transform.localPosition - glove.restingPos));
                 glove.GetComponent<Collider>().enabled = false;
+            }
+            if(Distance3D(glove.transform.localPosition - glove.restingPos) <= .1f){
+                glove.ableToPunch = true;
             }
             i++;
         }
