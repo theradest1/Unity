@@ -17,6 +17,7 @@ public class Health : MonoBehaviour
     Sound sound;
     public GameObject head;
     public float critDmg;
+    public CamShake camShake;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +40,7 @@ public class Health : MonoBehaviour
         //Debug.Log(strength);
         //Debug.Log(strength);
         if(strength > minStrength){
+            StartCoroutine(camShake.Shake(.1f, strength));
             sound.hitSounds();
             Instantiate(hitParticles, collision.contacts[0].point, healthBarCanvas.transform.rotation);
 
