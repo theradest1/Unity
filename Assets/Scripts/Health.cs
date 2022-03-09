@@ -5,19 +5,24 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public float maxHealth;
-    public float health;
-    public float height;
-    public Slider healthBar;
-    public Canvas healthBarCanvas;
-    public float resistance;
+    Sound sound;
     public GameObject player;
     public GameObject hitParticles;
-    public float minStrength;
-    Sound sound;
     public GameObject head;
-    public float critDmg;
+
+    public Slider healthBar;
+    public Canvas healthBarCanvas;
     public CamShake camShake;
+
+    public float maxHealth;
+    public float health;
+    public float healthHeight;
+
+    public float resistance;
+    public float minStrength;
+    public float critDmg;
+
+    public bool debugHits;
 
     // Start is called before the first frame update
     void Start()
@@ -28,26 +33,36 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthBarCanvas.transform.position = new Vector3(0, height, 0) + this.transform.position;
+        healthBarCanvas.transform.position = new Vector3(0, healthHeight, 0) + this.transform.position;
         healthBarCanvas.transform.LookAt(player.transform.position);
     }
 
     void OnCollisionEnter(Collision collision)
     {   
         float strength = collision.relativeVelocity.magnitude;
-        collision.gameObject.GetComponent<Glove>().ableToPunch = false;
 
         //Debug.Log(strength);
         //Debug.Log(strength);
-        if(strength > minStrength){
+        if(collision.gameObject.tag == "Glove")
+        {
+            collision.gameObject.GetComponent<Glove>().ableToPunch = false;
+            collision.gameObject.GetComponent<Glove>().RB.isKinematic = true;
+            collision.gameObject.GetComponent<Glove>().trail.emitting = false;
+            if(strength > minStrength){
             StartCoroutine(camShake.Shake(.1f, strength));
             sound.hitSounds();
             Instantiate(hitParticles, collision.contacts[0].point, healthBarCanvas.transform.rotation);
 
-            if(collision.GetContact(0).thisCollider.gameObject == head){
-                strength *= critDmg;
-                Debug.Log("head hit");
+            if(debugHits){
+                if(collision.GetContact(0).thisCollider.gameObject == head){
+                    strength *= critDmg;
+                    Debug.Log("Head hit, Strength: " + strength + ", Glove: " + collision.gameObject);
+                }
+                else{
+                    Debug.Log("Body hit, Strength: " + strength + ", Glove: " + collision.gameObject);
+                }
             }
+            
 
             health -= strength/resistance;
 
@@ -56,6 +71,8 @@ public class Health : MonoBehaviour
             }
 
             healthBar.value = health/maxHealth;
+        }
+        
 
         }
     }

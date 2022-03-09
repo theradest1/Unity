@@ -323,7 +323,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.4
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &51758626
 MeshRenderer:
@@ -488,18 +488,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb5bec31e0886e741852ef79c5ee88bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  health: 100
-  height: 1.75
-  healthBar: {fileID: 480950876}
-  healthBarCanvas: {fileID: 1148409762}
-  resistance: 10
   player: {fileID: 330849826}
   hitParticles: {fileID: 1778088926587971233, guid: 537bb4285a1b0a24f9614a0395c75750, type: 3}
-  minStrength: 20
-  head: {fileID: 0}
-  critDmg: 10000
+  head: {fileID: 51758623}
+  healthBar: {fileID: 480950876}
+  healthBarCanvas: {fileID: 1148409762}
   camShake: {fileID: 963194230}
+  maxHealth: 100
+  health: 100
+  healthHeight: 1.75
+  resistance: 10
+  minStrength: 20
+  critDmg: 1.5
+  debugHits: 1
 --- !u!136 &62509515
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1307,19 +1308,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660a85b122eaa744b8891865c47dbd1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 10
-  lookSpeedHorizontal: 50
-  lookSpeedVertical: 30
   cam: {fileID: 963194225}
   lookPlace: {fileID: 188884670}
   Enemy: {fileID: 62509508}
   EnemyHead: {fileID: 51758623}
-  lookSmoothing: 9
+  punchTarget: {fileID: 0}
+  playerSpeed: 10
   leanSpeed: 0.05
   leanTarget: {x: 22, y: 22}
+  lookSpeedHorizontal: 50
+  lookSpeedVertical: 30
+  lookSmoothing: 9
   limitX: {x: -8.22, y: 8.15}
   limitZ: {x: 0.64, y: 17.04}
-  punchTarget: {fileID: 0}
 --- !u!136 &330849829
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1377,22 +1378,6 @@ MonoBehaviour:
     m_ActionName: Player/Dodge[/DualShock4GamepadHID/buttonNorth,/DualShock4GamepadHID/buttonSouth,/DualShock4GamepadHID/buttonWest,/DualShock4GamepadHID/buttonEast,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 330849831}
-        m_TargetAssemblyTypeName: Punching, Assembly-CSharp
-        m_MethodName: LeftSwitchGuard
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: cb7e00c1-370a-4236-8fe9-7aa9faa201e0
-    m_ActionName: Player/LeftBlockSwitch[/DualShock4GamepadHID/leftTrigger]
-  - m_PersistentCalls:
-      m_Calls:
       - m_Target: {fileID: 330849828}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: switchTarget
@@ -1439,6 +1424,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 1177a59b-4871-4e5c-a326-a8003d2a506c
     m_ActionName: Player/Menu[/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 330849831}
+        m_TargetAssemblyTypeName: Punching, Assembly-CSharp
+        m_MethodName: LeftSwitchGuard
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2adfdbf8-0295-490a-9c15-2fc27c05bb5d
+    m_ActionName: Player/RightBlockSwitch1[/DualShock4GamepadHID/rightTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1456,12 +1457,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1459199d2e8fb274089ce153e634aefc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Enemy: {fileID: 62509508}
+  cam: {fileID: 963194225}
+  maxPunchDist: 4
   punchingSpeed: 80000
   returnSpeed: 15
-  Enemy: {fileID: 62509508}
-  maxPunchDist: 4
   rigidbodyOnTime: 0.15
-  cam: {fileID: 963194225}
   punchOnlyWhenReturned: 1
   minSlowdown: 1
   maxSlowdown: 1
@@ -1885,10 +1886,10 @@ MonoBehaviour:
   hit: {fileID: 465698547}
   bored: {fileID: 645887320}
   excited: {fileID: 733978716}
-  excitedTimeAdd: 1.5
+  excitedTimeAdd: 1
   volumeChear: {x: 0, y: 0.5}
-  excitedSpeedUp: 1
-  excitedSpeedDown: 0.1
+  excitedSpeedUp: 0.5
+  excitedSpeedDown: 0.05
   chantingStartTime: 15
 --- !u!4 &494508867
 Transform:

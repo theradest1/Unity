@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -4426603015912822534}
   m_Layer: 0
   m_Name: Glove
-  m_TagString: Untagged
+  m_TagString: Glove
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -244,3 +244,4 @@ MonoBehaviour:
   RBOn: 0.2
   gloveXFace: 0.2
   gloveYFace: 0.4
+  ableToPunch: 0

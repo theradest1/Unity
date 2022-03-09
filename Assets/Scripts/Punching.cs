@@ -5,15 +5,17 @@ using UnityEngine.InputSystem;
 
 public class Punching : MonoBehaviour
 {
-
     List<Glove> gloves;
+
+    public GameObject Enemy;
+    public GameObject cam;
+
+    public float maxPunchDist;
     public float punchingSpeed;
     public float returnSpeed;
-    public GameObject Enemy;
-    public float maxPunchDist;
     public float rigidbodyOnTime;
-    public GameObject cam;
     public bool punchOnlyWhenReturned;
+
     public float minSlowdown;
     public float maxSlowdown;
     public float slowdownValue;
@@ -87,7 +89,6 @@ public class Punching : MonoBehaviour
         }
         else if(context.canceled){
             gloves[0].restingPos = gloves[0].initialTransform;
-
         }
     }
     public void RightSwitchGuard(InputAction.CallbackContext context){

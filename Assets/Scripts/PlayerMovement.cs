@@ -6,27 +6,28 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    float playerSpeed;
+    Vector2 leanAmount;
+    PlayerInput inputs;
+    Punching punching;
     Rigidbody rb; 
-    [SerializeField]
-    float lookSpeedHorizontal;
-    [SerializeField]
-    float lookSpeedVertical;
     public GameObject cam;
     public GameObject lookPlace;
     public GameObject Enemy;
     public GameObject EnemyHead;
-    public float lookSmoothing = .02f;
+    public GameObject punchTarget;
+
+    public float playerSpeed;
+
     public float leanSpeed;
     public Vector2 leanTarget;
-    Vector2 leanAmount;
-    private PlayerInput inputs;
-    private Punching punching;
+
+    public float lookSpeedHorizontal;
+    public float lookSpeedVertical;
+    public float lookSmoothing = .02f;
+
     private float playerY;
     public Vector2 limitX;
     public Vector2 limitZ;
-    public GameObject punchTarget;
 
     private void Awake()
     {
@@ -43,7 +44,6 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         rb = GetComponent<Rigidbody>();
         punching = this.GetComponent<Punching>();
         playerY = this.transform.position.y;
