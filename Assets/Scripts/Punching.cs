@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using XInputDotNetPure;
 
 public class Punching : MonoBehaviour
 {
@@ -43,6 +44,8 @@ public class Punching : MonoBehaviour
     }
     void Update()
     {
+        GamePadState state = GamePad.GetState(PlayerIndex.One);
+        Debug.Log(state.IsConnected + ", " + state.PacketNumber);
         List<float> endTimeScale = new List<float>{1f, 1f};
         int i = 0;
         foreach(Glove glove in gloves){
