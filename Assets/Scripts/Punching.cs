@@ -21,6 +21,9 @@ public class Punching : MonoBehaviour
     public float maxSlowdown;
     public float slowdownValue;
 
+    PlayerIndex playerIndex;
+    GamePadState state;
+
     void Start()
     {
         gloves = new List<Glove>{GameObject.Find("LeftGlove").GetComponent<Glove>(), GameObject.Find("RightGlove").GetComponent<Glove>()};
@@ -44,8 +47,11 @@ public class Punching : MonoBehaviour
     }
     void Update()
     {
-        GamePadState state = GamePad.GetState(PlayerIndex.One);
-        Debug.Log(state.IsConnected + ", " + state.PacketNumber);
+        playerIndex = (PlayerIndex)0;
+        state = GamePad.GetState(playerIndex);
+        Debug.Log(state.Triggers.Left);
+        GamePad.SetVibration(playerIndex, state.Triggers.Left, state.Triggers.Right);
+
         List<float> endTimeScale = new List<float>{1f, 1f};
         int i = 0;
         foreach(Glove glove in gloves){
