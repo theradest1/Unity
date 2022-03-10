@@ -21,8 +21,8 @@ public class Punching : MonoBehaviour
     public float maxSlowdown;
     public float slowdownValue;
 
-    PlayerIndex playerIndex;
-    GamePadState state;
+    //PlayerIndex playerIndex;
+    //GamePadState state;
 
     void Start()
     {
@@ -47,10 +47,10 @@ public class Punching : MonoBehaviour
     }
     void Update()
     {
-        playerIndex = (PlayerIndex)0;
-        state = GamePad.GetState(playerIndex);
-        Debug.Log(state.Triggers.Left);
-        GamePad.SetVibration(playerIndex, state.Triggers.Left, state.Triggers.Right);
+        //playerIndex = (PlayerIndex)0;
+        //state = GamePad.GetState(playerIndex);
+        //Debug.Log(state.Triggers.Left);
+        //GamePad.SetVibration(playerIndex, state.Triggers.Left, state.Triggers.Right);
 
         List<float> endTimeScale = new List<float>{1f, 1f};
         int i = 0;
