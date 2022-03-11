@@ -6,6 +6,7 @@ public class EnemyMovement : MonoBehaviour
 {
 
     public GameObject Player;
+    public float speed;
 
     // Start is called before the first frame update
     void Start()
@@ -17,5 +18,6 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         this.gameObject.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
+        this.gameObject.transform.position += this.gameObject.transform.forward * speed * Time.deltaTime;
     }
 }
