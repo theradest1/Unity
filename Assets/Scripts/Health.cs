@@ -48,6 +48,7 @@ public class Health : MonoBehaviour
             collision.gameObject.GetComponent<Glove>().ableToPunch = false;
             collision.gameObject.GetComponent<Glove>().RB.isKinematic = true;
             collision.gameObject.GetComponent<Glove>().trail.emitting = false;
+            collision.gameObject.GetComponent<Glove>().collider.enabled = false;
             if(strength > minStrength){
             StartCoroutine(camShake.Shake(.1f, strength));
             sound.hitSounds();
