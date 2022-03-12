@@ -29,7 +29,7 @@ public class Punching : MonoBehaviour
         gloves = new List<Glove>{GameObject.Find("LeftGlove").GetComponent<Glove>(), GameObject.Find("RightGlove").GetComponent<Glove>()};
     }
 
-    public async void punch(List <Vector2> vectors){
+    public void punch(List <Vector2> vectors){
         int i = 0;
         foreach(Glove glove in gloves){
             if(Distance3D(glove.transform.localPosition - glove.initialTransform) <= maxPunchDist && vectors[i] != Vector2.zero && glove.ableToPunch){
