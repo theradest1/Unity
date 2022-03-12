@@ -111,8 +111,8 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
+  m_Constraints: 112
+  m_CollisionDetection: 3
 --- !u!114 &4366929203830854906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,5 +132,9 @@ MonoBehaviour:
   RB: {fileID: 8739267486009057971}
   coll: {fileID: 8827866329050353154}
   strength: 1
-  chanceToHit: 1
+  hitChance: 1
   movementSpeed: 15
+  switchChance: 0.5
+  punching: 0
+  enemy: {fileID: 0}
+  maxDist: 4

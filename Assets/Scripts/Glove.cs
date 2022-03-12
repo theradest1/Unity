@@ -18,7 +18,6 @@ public class Glove : MonoBehaviour
     public float gloveYFace;
     public bool ableToPunch;
 
-    //Start is called before the first frame update
     void Start()
     {
         gloveObject = this.gameObject;
@@ -26,7 +25,6 @@ public class Glove : MonoBehaviour
         restingPos = initialTransform;
     }
 
-    // Update is called once per frame
     void Update()
     {
         

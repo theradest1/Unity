@@ -11,8 +11,12 @@ public class EnemyGlove : MonoBehaviour
     public Rigidbody RB;
     public Collider coll;
     public float strength;
-    public float chanceToHit;
+    public float hitChance;
     public float movementSpeed;
+    public float switchChance;
+    public bool punching;
+    public GameObject enemy;
+    public float maxDist;
 
     // Start is called before the first frame update
     void Start()
@@ -27,14 +31,36 @@ public class EnemyGlove : MonoBehaviour
         if(faceGuard){
             restingPos += new Vector3(faceGuardPos.x, faceGuardPos.y, 0);
         }
-        if(RB.isKinematic){
+
+        if(Distance3D(this.transform.localPosition - restingPos) <= .1){
+            coll.enabled = true;
+            ableToPunch = true;
+        }
+        else if(Distance3D(this.transform.localPosition - restingPos) > maxDist){
+            StopPunching();
+        }
+        else if(RB.isKinematic){
             this.transform.localPosition = moveTowards(this.transform.localPosition, restingPos, movementSpeed * Distance3D(this.transform.localPosition - restingPos));
             coll.enabled = false;
+        }
+
+        if(punching){
+            RB.AddForce(enemy.transform.forward * strength * Time.deltaTime);
         }
     }
 
     public void SwitchGuard(){
-        faceGuard = !faceGuard;
+        if(Random.Range(0f, 1f) <= switchChance){
+            faceGuard = !faceGuard;
+        }
+    }
+    public void hit(){
+        if(ableToPunch && Random.Range(0f, 1f) < hitChance){
+            punching = true;
+            coll.enabled = true;
+            RB.isKinematic = false;
+            Debug.Log("punching");
+        }
     }
 
     Vector3 moveTowards(Vector3 location, Vector3 target, float speed){
@@ -46,4 +72,18 @@ public class EnemyGlove : MonoBehaviour
         float dist = Mathf.Sqrt(loc.x * loc.x + loc.y * loc.y + loc.z * loc.z);
         return dist;
     }
+
+    void OnCollisionEnter(Collision collision){
+        if(collision.gameObject.tag == "Glove" || collision.gameObject.tag == "Player"){
+            StopPunching();
+        }
+    }
+
+    void StopPunching(){
+        ableToPunch = false;
+        punching = false;
+        coll.enabled = false;
+        RB.isKinematic = true;
+    }
+    
 }

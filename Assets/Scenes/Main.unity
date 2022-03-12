@@ -474,7 +474,7 @@ MonoBehaviour:
   lookPlace: {fileID: 16292599}
   speed: 1.3
   maxDist: 4
-  minDist: 2.2
+  minDist: 3
   strapheSpeed: 1
   strapheChangeChance: 0.1
   strapheChangeCallTime: 0.1
@@ -1258,7 +1258,7 @@ GameObject:
   - component: {fileID: 330849829}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2683,20 +2683,36 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 62509508}
+    - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
+      propertyPath: strength
+      value: 80000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
+      propertyPath: hitChance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
+      propertyPath: switchChance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
       propertyPath: movementSpeed
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
       propertyPath: faceGuardPos.x
-      value: 0.59
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
       propertyPath: faceGuardPos.y
-      value: 0.48
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 8504577638607492380, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
       propertyPath: m_Name
-      value: RightGlove
+      value: RightGloveEnemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
@@ -3943,6 +3959,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &1392767109 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 7992280646442612710, guid: cd490bfedc6bcc440acc9d2512ebe4e6, type: 3}
+  m_PrefabInstance: {fileID: 7992280645970551315}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1422379459
 GameObject:
   m_ObjectHideFlags: 0
@@ -4217,6 +4238,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 330849827}
     m_Modifications:
+    - target: {fileID: -4426603015912822534, guid: cd490bfedc6bcc440acc9d2512ebe4e6, type: 3}
+      propertyPath: coll
+      value: 
+      objectReference: {fileID: 2125619973}
     - target: {fileID: 7992280646442612704, guid: cd490bfedc6bcc440acc9d2512ebe4e6, type: 3}
       propertyPath: m_Name
       value: RightGlove
@@ -5612,6 +5637,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2077866445}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!135 &2125619973 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 7992280646442612710, guid: cd490bfedc6bcc440acc9d2512ebe4e6, type: 3}
+  m_PrefabInstance: {fileID: 1517323172}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1944628755211315693
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5672,11 +5702,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1124558410}
     - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 62509508}
+    - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
       propertyPath: strength
-      value: 1
+      value: 80000
       objectReference: {fileID: 0}
     - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
       propertyPath: faceGuard
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
+      propertyPath: hitChance
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
@@ -5684,20 +5722,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
+      propertyPath: switchChance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
       propertyPath: movementSpeed
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
       propertyPath: faceGuardPos.x
-      value: -0.59
+      value: -0.05
       objectReference: {fileID: 0}
     - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
       propertyPath: faceGuardPos.y
-      value: 0.48
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 8504577638607492380, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
       propertyPath: m_Name
-      value: LeftGlove
+      value: LeftGloveEnemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
@@ -5708,6 +5750,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 330849827}
     m_Modifications:
+    - target: {fileID: -4426603015912822534, guid: cd490bfedc6bcc440acc9d2512ebe4e6, type: 3}
+      propertyPath: coll
+      value: 
+      objectReference: {fileID: 1392767109}
     - target: {fileID: -4426603015912822534, guid: cd490bfedc6bcc440acc9d2512ebe4e6, type: 3}
       propertyPath: gloveXFace
       value: 0.2

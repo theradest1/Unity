@@ -24,10 +24,13 @@ public class Health : MonoBehaviour
 
     public bool debugHits;
 
+    List<EnemyGlove> gloves;
+
     // Start is called before the first frame update
     void Start()
     {
         sound = GameObject.Find("SoundManager").GetComponent<Sound>();
+        gloves = new List<EnemyGlove>{GameObject.Find("LeftGloveEnemy").GetComponent<EnemyGlove>(), GameObject.Find("RightGloveEnemy").GetComponent<EnemyGlove>()};
     }
 
     // Update is called once per frame
@@ -48,31 +51,37 @@ public class Health : MonoBehaviour
             collision.gameObject.GetComponent<Glove>().ableToPunch = false;
             collision.gameObject.GetComponent<Glove>().RB.isKinematic = true;
             collision.gameObject.GetComponent<Glove>().trail.emitting = false;
-            collision.gameObject.GetComponent<Glove>().collider.enabled = false;
+            collision.gameObject.GetComponent<Glove>().GetComponent<Collider>().enabled = false;
+            foreach(EnemyGlove glove in gloves){
+                glove.SwitchGuard();
+            }
             if(strength > minStrength){
-            StartCoroutine(camShake.Shake(.1f, strength));
-            sound.hitSounds();
-            Instantiate(hitParticles, collision.contacts[0].point, healthBarCanvas.transform.rotation);
+                StartCoroutine(camShake.Shake(.1f, strength));
+                sound.hitSounds();
+                Instantiate(hitParticles, collision.contacts[0].point, healthBarCanvas.transform.rotation);
 
-            if(debugHits){
-                if(collision.GetContact(0).thisCollider.gameObject == head){
+                if(debugHits){
+                    if(collision.GetContact(0).thisCollider.gameObject == head){
+                        strength *= critDmg;
+                        Debug.Log("Head hit, Strength: " + strength + ", Glove: " + collision.gameObject);
+                    }
+                    else{
+                        Debug.Log("Body hit, Strength: " + strength + ", Glove: " + collision.gameObject);
+                    }
+                }
+                else if(collision.GetContact(0).thisCollider.gameObject == head){
                     strength *= critDmg;
-                    Debug.Log("Head hit, Strength: " + strength + ", Glove: " + collision.gameObject);
                 }
-                else{
-                    Debug.Log("Body hit, Strength: " + strength + ", Glove: " + collision.gameObject);
+                
+
+                health -= strength/resistance;
+
+                if(health <= 0){
+                    health = maxHealth;
                 }
+
+                healthBar.value = health/maxHealth;
             }
-            
-
-            health -= strength/resistance;
-
-            if(health <= 0){
-                health = maxHealth;
-            }
-
-            healthBar.value = health/maxHealth;
-        }
         
 
         }

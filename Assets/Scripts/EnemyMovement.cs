@@ -20,11 +20,13 @@ public class EnemyMovement : MonoBehaviour
     int moveDirection = 1;
 
     public float lookSmoothing;
+    List<EnemyGlove> gloves;
 
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("ChangeStraphe", 1f, strapheChangeCallTime);
+        gloves = new List<EnemyGlove>{GameObject.Find("LeftGloveEnemy").GetComponent<EnemyGlove>(), GameObject.Find("RightGloveEnemy").GetComponent<EnemyGlove>()};
     }
 
     // Update is called once per frame
@@ -53,8 +55,9 @@ public class EnemyMovement : MonoBehaviour
 
     void ChangeStraphe(){
         float rand = Random.Range(0f, 1f);
-        if(rand < strapheChangeChance){ //this feels like a sin frick c# for not letting 0 = false and above 0 = true
+        if(rand < strapheChangeChance){
             strapheDirection *= -1;
+            gloves[Random.Range(0, 2)].hit();
         }
         rand = Random.Range(0f, 1f);
         if(rand < strapheChangeChance){
