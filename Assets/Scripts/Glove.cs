@@ -9,7 +9,7 @@ public class Glove : MonoBehaviour
     public bool bodyGuard = true;
     public GameObject gloveObject;
     public TrailRenderer trail;
-    public Collider collider;
+    public Collider coll;
     public Rigidbody RB;
     public Vector3 initialTransform;
     public Vector3 restingPos;

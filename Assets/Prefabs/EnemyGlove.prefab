@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4220267266001687831}
   - component: {fileID: 8827866329050353154}
   - component: {fileID: 8739267486009057971}
+  - component: {fileID: 4366929203830854906}
   m_Layer: 0
   m_Name: EnemyGlove
   m_TagString: Untagged
@@ -112,3 +113,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &4366929203830854906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8504577638607492380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a86a0e1421f09144ca072dd7e150b463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ableToPunch: 0
+  initialPos: {x: 0, y: 0, z: 0}
+  faceGuardPos: {x: 2, y: 5}
+  faceGuard: 1
+  RB: {fileID: 8739267486009057971}
+  coll: {fileID: 8827866329050353154}
+  strength: 1
+  chanceToHit: 1
+  movementSpeed: 15

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2648,7 +2648,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2420912095568901567, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.25
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 2420912095568901567, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2681,6 +2681,18 @@ PrefabInstance:
     - target: {fileID: 2420912095568901567, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
+      propertyPath: movementSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
+      propertyPath: faceGuardPos.x
+      value: 0.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
+      propertyPath: faceGuardPos.y
+      value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: 8504577638607492380, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
       propertyPath: m_Name
@@ -3216,6 +3228,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1115728769}
   m_CullTransparentMesh: 1
+--- !u!54 &1124558409 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 8739267486009057971, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
+  m_PrefabInstance: {fileID: 1944628755211315693}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &1124558410 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 8827866329050353154, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
+  m_PrefabInstance: {fileID: 1944628755211315693}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1148409758
 GameObject:
   m_ObjectHideFlags: 0
@@ -5607,7 +5629,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2420912095568901567, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.25
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 2420912095568901567, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5640,6 +5662,38 @@ PrefabInstance:
     - target: {fileID: 2420912095568901567, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
+      propertyPath: RB
+      value: 
+      objectReference: {fileID: 1124558409}
+    - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
+      propertyPath: coll
+      value: 
+      objectReference: {fileID: 1124558410}
+    - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
+      propertyPath: strength
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
+      propertyPath: faceGuard
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
+      propertyPath: chanceToHit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
+      propertyPath: movementSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
+      propertyPath: faceGuardPos.x
+      value: -0.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366929203830854906, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
+      propertyPath: faceGuardPos.y
+      value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: 8504577638607492380, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
       propertyPath: m_Name

@@ -37,7 +37,7 @@ public class Punching : MonoBehaviour
                 glove.RB.isKinematic = false;
                 glove.trail.emitting = true;
                 glove.RBOn = rigidbodyOnTime;
-                glove.GetComponent<Collider>().enabled = true;
+                glove.coll.enabled = true;
             }
             if(vectors[i] == Vector2.zero){
                 glove.ableToPunch = false;
@@ -63,17 +63,18 @@ public class Punching : MonoBehaviour
             if(glove.RBOn > 0f){
                 glove.RBOn -= Time.deltaTime;
             }
-            if(glove.RBOn <= 0 && glove.RB.isKinematic == false){
+            else if(glove.RBOn <= 0 && glove.RB.isKinematic == false){
                 glove.RB.isKinematic = true;
                 glove.trail.emitting = false;
             }
 
             if(glove.RB.isKinematic){
                 glove.transform.localPosition = moveTowards(glove.transform.localPosition, glove.restingPos, returnSpeed * Distance3D(glove.transform.localPosition - glove.restingPos));
-                glove.GetComponent<Collider>().enabled = false;
+                glove.coll.enabled = false;
             }
             if(Distance3D(glove.transform.localPosition - glove.restingPos) <= .1f){
                 glove.ableToPunch = true;
+                glove.coll.enabled = true;
             }
             i++;
         }
