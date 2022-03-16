@@ -17,6 +17,7 @@ public class EnemyMovement : MonoBehaviour
     public float strapheSpeed;
     public float strapheChangeChance;
     public float strapheChangeCallTime;
+    public float punchCallTime;
     int moveDirection = 1;
 
     public float lookSmoothing;
@@ -25,7 +26,8 @@ public class EnemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("ChangeStraphe", 1f, strapheChangeCallTime);
+        InvokeRepeating("ChangeStraphe", 0f, strapheChangeCallTime);
+        InvokeRepeating("RandomPunch", 0f, punchCallTime);
         gloves = new List<EnemyGlove>{GameObject.Find("LeftGloveEnemy").GetComponent<EnemyGlove>(), GameObject.Find("RightGloveEnemy").GetComponent<EnemyGlove>()};
     }
 
@@ -50,6 +52,12 @@ public class EnemyMovement : MonoBehaviour
 
             lookPlace.transform.position += this.gameObject.transform.right * strapheSpeed * Time.deltaTime * strapheDirection;
             lookPlace.transform.position += this.gameObject.transform.forward * strapheSpeed * Time.deltaTime * moveDirection;
+        }
+    }
+
+    void RandomPunch(){
+        if(Distance3D(this.gameObject.transform.position - Player.transform.position) < maxDist){
+            gloves[Random.Range(0, 2)].hit();
         }
     }
 
