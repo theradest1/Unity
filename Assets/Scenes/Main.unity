@@ -1256,6 +1256,7 @@ GameObject:
   - component: {fileID: 330849830}
   - component: {fileID: 330849831}
   - component: {fileID: 330849829}
+  - component: {fileID: 330849832}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1458,6 +1459,18 @@ MonoBehaviour:
   minSlowdown: 1
   maxSlowdown: 1
   slowdownValue: 3
+--- !u!114 &330849832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330849826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41b8fd722e7419a439bd870bffca5d1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &435265405
 GameObject:
   m_ObjectHideFlags: 0
@@ -2713,6 +2726,10 @@ PrefabInstance:
     - target: {fileID: 8504577638607492380, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
       propertyPath: m_Name
       value: RightGloveEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8739267486009057971, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
@@ -5740,6 +5757,10 @@ PrefabInstance:
     - target: {fileID: 8504577638607492380, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
       propertyPath: m_Name
       value: LeftGloveEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8739267486009057971, guid: 8cbb9840068c297429e324f694ba417c, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cbb9840068c297429e324f694ba417c, type: 3}

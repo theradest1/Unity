@@ -57,7 +57,11 @@ public class EnemyMovement : MonoBehaviour
         float rand = Random.Range(0f, 1f);
         if(rand < strapheChangeChance){
             strapheDirection *= -1;
-            gloves[Random.Range(0, 2)].hit();
+            float dist = Distance3D(this.gameObject.transform.position - Player.transform.position);
+            if(dist < maxDist && dist > minDist){
+                gloves[Random.Range(0, 2)].hit();
+            }
+            
         }
         rand = Random.Range(0f, 1f);
         if(rand < strapheChangeChance){
