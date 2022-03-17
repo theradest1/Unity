@@ -3056,8 +3056,8 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
-  - component: {fileID: 963194229}
   - component: {fileID: 963194230}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3150,7 +3150,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
-  antialiasingMode: 2
+  antialiasingMode: 3
   temporalAntialiasing:
     jitterSpread: 0.75
     sharpness: 0.25
@@ -4692,7 +4692,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7992280646442612715, guid: cd490bfedc6bcc440acc9d2512ebe4e6, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7992280646442612715, guid: cd490bfedc6bcc440acc9d2512ebe4e6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5596,7 +5596,7 @@ MonoBehaviour:
   isGlobal: 1
   blendDistance: 0
   weight: 1
-  priority: 1
+  priority: 0
 --- !u!4 &1860173284
 Transform:
   m_ObjectHideFlags: 0
@@ -6216,7 +6216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7992280646442612715, guid: cd490bfedc6bcc440acc9d2512ebe4e6, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7992280646442612715, guid: cd490bfedc6bcc440acc9d2512ebe4e6, type: 3}
       propertyPath: m_LocalPosition.x

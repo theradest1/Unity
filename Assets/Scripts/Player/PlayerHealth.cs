@@ -34,6 +34,9 @@ public class PlayerHealth : MonoBehaviour
                 sound.hitSounds();
                 StartCoroutine(camShake.Shake(.1f, strength * camMult));
                 health -= strength/resistance;
+                if(health <= 0){
+                    health = maxHealth;
+                }
                 healthBar.value = health/maxHealth;
             }
         }
