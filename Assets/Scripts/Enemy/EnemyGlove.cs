@@ -7,7 +7,6 @@ public class EnemyGlove : MonoBehaviour
     public bool ableToPunch;
     public Vector3 initialPos;
     public Vector2 faceGuardPos;
-    public bool faceGuard;
     public Rigidbody RB;
     public Collider coll;
     public float strength;
@@ -16,19 +15,21 @@ public class EnemyGlove : MonoBehaviour
     public float switchChance;
     public bool punching;
     public GameObject enemy;
+    public EnemyMovement enemyMovement;
     public float maxDist;
 
     // Start is called before the first frame update
     void Start()
     {
         initialPos = this.gameObject.transform.localPosition;
+        enemyMovement = enemy.GetComponent<EnemyMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector3 restingPos = initialPos;
-        if(faceGuard){
+        if(enemyMovement.faceGuard){
             restingPos += new Vector3(faceGuardPos.x, faceGuardPos.y, 0);
         }
 
@@ -51,7 +52,7 @@ public class EnemyGlove : MonoBehaviour
 
     public void SwitchGuard(){
         if(Random.Range(0f, 1f) <= switchChance){
-            faceGuard = !faceGuard;
+            enemyMovement.faceGuard = !enemyMovement.faceGuard;
         }
     }
     public void hit(){
@@ -76,6 +77,7 @@ public class EnemyGlove : MonoBehaviour
     void OnCollisionEnter(Collision collision){
         if(collision.gameObject.tag == "Glove" || collision.gameObject.tag == "Player"){
             StopPunching();
+            Debug.Log(collision.gameObject);
         }
     }
 

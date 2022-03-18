@@ -30,6 +30,7 @@ public class PlayerHealth : MonoBehaviour
         if(collision.gameObject.tag == "EnemyGlove" && collision.GetContact(0).thisCollider.gameObject.tag != "Glove")
         {
             float strength = collision.relativeVelocity.magnitude;
+            Debug.Log(strength);
             if(strength >= minStrength){
                 sound.hitSounds();
                 StartCoroutine(camShake.Shake(.1f, strength * camMult));

@@ -78,12 +78,12 @@ public class Punching : MonoBehaviour
             i++;
         }
 
-        if(endTimeScale[0] <= endTimeScale[1]){
-            Time.timeScale = endTimeScale[0];
-        }
-        else{
-            Time.timeScale = endTimeScale[1];
-        }
+        //if(endTimeScale[0] <= endTimeScale[1]){
+        //    Time.timeScale = endTimeScale[0];
+        //}
+        //else{
+        //    Time.timeScale = endTimeScale[1];
+        //}
         //Debug.Log(Time.timeScale);
     }
 

@@ -22,6 +22,7 @@ public class EnemyMovement : MonoBehaviour
 
     public float lookSmoothing;
     List<EnemyGlove> gloves;
+    public bool faceGuard;
 
     // Start is called before the first frame update
     void Start()

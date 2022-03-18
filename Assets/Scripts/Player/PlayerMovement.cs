@@ -51,6 +51,8 @@ public class PlayerMovement : MonoBehaviour
         punching = this.GetComponent<Punching>();
         playerY = this.transform.position.y;
         punchTarget = Enemy;
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = .02f;
     }
 
     // Update is called once per frame
